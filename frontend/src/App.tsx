@@ -1,6 +1,9 @@
 import React from 'react';
 //import logo from 'logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './Home/Home';
+import Products from './Products/Products';
 
 
 function App() {
@@ -12,7 +15,7 @@ const closeMenu = () => {
 }
 
   return (
-
+<Router>
     <div className="grid-container">
     <header className="header">
         <div className="brand">
@@ -20,8 +23,8 @@ const closeMenu = () => {
             <a href="index.html">Side Winder</a>
         </div>
          <div className="header-links">
-            <a href="cart.html">Cart</a>
-            <a href="signin.html">Sign In</a>
+            <Link to= "/">Home</Link>
+            <Link to= "/catalog">Catalog</Link>
          </div>
     </header>
 <head>
@@ -36,13 +39,27 @@ const closeMenu = () => {
     <aside className="sidebar">
         <h3>Shopping Categories</h3>
         <button className="sidebar-close-button" onClick={closeMenu}>x</button>
-        <ul>
-            <li>
-                <a href="index.html">Pants</a>
-            </li>
-            <li>
-                <a href ="index.html">Shirts</a>
-            </li>
+        <ul className="products">
+            {data.products.map((product)   (
+                <li>
+                <div className= "product">
+                    <img
+                        className="product-image"
+                        src={product.imageUrl}
+                        alt="product"
+                    />
+                    <div className="product-name">
+                        <a href="product.html">{Products.name}</a>
+                    </div>
+                    <div className="product-brand">{product.brand}</div>
+                    <div className="product-price">{product.price}</div>
+                    <div className="product-rating">
+                        {product.rating} Stars ({Products.numberOfReviews} reviews)
+                    </div>
+                    </div>
+                </li>
+                ))}
+                ;   
         </ul>
     </aside>
     <div className="content">
@@ -104,14 +121,12 @@ const closeMenu = () => {
             </li>       
         </ul>
     </div>
-        
-         <ul>
-             <li>Product 1</li>
-             <li>Product 2</li>
-             <li>Product 3</li>
-             <li>Product 4</li>
-             <li>Product 5</li>
-        </ul>
+       <main className= "main">
+            <Routes>
+                <Route path="/" element = {<Home />} />
+                <Route path = "/catalog" element={<Products />} />
+            </Routes>
+        </main>
     </div>
     <footer>
          &copy; 2023 Side Winder
@@ -119,7 +134,7 @@ const closeMenu = () => {
     </body>
   </link>
 </div>
-
+</Router>
   );
 }
   export default App;
