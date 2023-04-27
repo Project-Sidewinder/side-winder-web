@@ -64,9 +64,16 @@ function App() {
 
                             <div className="content">
                                 <ul className="products">
-                                    <li>
+                                    {Products.map((product) => (
+                                        <li key={product.id}>
+                                    
+                                
+                                    
                                         <div className="product">
-                                            <img className="product-image" src="images/d1.jpg" alt="product" />
+                                            <img className="product-image" 
+                                            src="images/d1.jpg" 
+                                            alt="product" 
+                                            />
                                             <div className="product-name">
                                                 <a href="product.html">Slim Shirt</a>
                                             </div>
